@@ -94,9 +94,16 @@ void Game::operator()() {
 					for (j = 0; j < agents.size() && j != i; j++)
 						if (new_pos == agents[j]->getPosition()) {
 							agents[i]->fight(*agents[j]);
+							
+							//daca agentul cu indexul j castiga lupta, atunci
+							//agentul cu indexul i va fi sters
 							if (!(agents[i]->isAlive())) {
 								eraseAgent(i);
 							}
+							
+							//daca agentul cu indexul i castiga lupta, atunci
+							//agentul cu indexul j va fi sters si o sa fie inlocuit de 
+							//agentul i
 							if(!(agents[j]->isAlive())) {
 								eraseAgent(j);
 								map.setChar(pos, ' ');
